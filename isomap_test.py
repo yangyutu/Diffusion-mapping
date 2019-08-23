@@ -27,7 +27,7 @@ solver = manifold.Isomap(n_neighbors, n_components)
 Y = solver.fit_transform(X)
 fig = plt.figure(2)
 ax = fig.add_subplot(111)
-plt.scatter(Y[:, 0], Y[:, 1], c=color, cmap=plt.cm.Spectral)
+plt.scatter(Y[:, 0], Y[:, 1], c=color[:,0], cmap=plt.cm.Spectral)
 
 #ax.xaxis.set_major_formatter(NullFormatter())
 #ax.yaxis.set_major_formatter(NullFormatter())
@@ -39,10 +39,10 @@ geodesic_distance = solver.dist_matrix_
 #gd_transformed = kernel.transform(geodesic_distance)
 #w,v = scipy.sparse.linalg.eigs(gd_transformed,k=10)
 
-print 'absolute reconstruct error'
+print('absolute reconstruct error')
 error = solver.reconstruction_error()
-print error
-print math.sqrt(error) / np.linalg.norm(geodesic_distance) 
+print(error)
+print(math.sqrt(error) / np.linalg.norm(geodesic_distance)) 
 
 # now I do the eigendecomposition by myself
 H = np.eye(npoint) - 1.0/npoint
@@ -56,7 +56,7 @@ for i in range(v.shape[1]):
         
 fig = plt.figure(3)
 ax = fig.add_subplot(111)
-plt.scatter(v[:, 0], v[:, 1], c=color, cmap=plt.cm.Spectral)
+plt.scatter(v[:, 0], v[:, 1], c=color[:,0], cmap=plt.cm.Spectral)
 #ax.xaxis.set_major_formatter(NullFormatter())
 #ax.yaxis.set_major_formatter(NullFormatter())
 plt.axis('tight')
